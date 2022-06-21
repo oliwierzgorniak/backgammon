@@ -1,8 +1,9 @@
 // compents
 import { Canvas } from "@react-three/fiber";
+import { OrbitControls } from "@react-three/drei";
 
 // data
-import Board from "../components/Board";
+import Board from "../components/models/Board";
 import Colors from "../data/Colors";
 
 // types
@@ -18,6 +19,7 @@ const Game: NextPage = () => {
       }}
       style={{ height: "100vh" }}
     >
+      <OrbitControls />
       <directionalLight color={"#ffffff"} intensity={1} />
       <Board />
       {/* <axesHelper args={[100]} /> */}
