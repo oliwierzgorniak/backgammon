@@ -1,12 +1,26 @@
+// compents
 import { Canvas } from "@react-three/fiber";
+
+// data
+import Board from "../components/Board";
+import Colors from "../data/Colors";
+
+// types
 import type { NextPage } from "next";
-import Box from "../components/Box";
-// import Box from "../components/Box";
 
 const Game: NextPage = () => {
   return (
-    <Canvas camera={{ position: [2, 2, 2] }} style={{ height: "100vh" }}>
-      <Box />
+    <Canvas
+      camera={{ position: [0, 35, 22] }}
+      onCreated={({ gl, camera }) => {
+        camera.lookAt(0, 0, 2.7);
+        gl.setClearColor(Colors.scene[0]);
+      }}
+      style={{ height: "100vh" }}
+    >
+      <directionalLight color={"#ffffff"} intensity={1} />
+      <Board />
+      {/* <axesHelper args={[100]} /> */}
     </Canvas>
   );
 };
