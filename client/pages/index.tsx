@@ -22,7 +22,7 @@ const Game: NextPage = () => {
       <OrbitControls />
       <directionalLight color={"#ffffff"} intensity={1} />
       <Board />
-      <axesHelper args={[100]} />
+      {/* <axesHelper args={[100]} /> */}
     </Canvas>
   );
 };

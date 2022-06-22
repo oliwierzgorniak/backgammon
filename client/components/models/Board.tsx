@@ -6,7 +6,7 @@ const Board = () => {
   return (
     <group>
       <BoardSurface />
-      {/* <Stand /> */}
+      <Stand />
     </group>
   );
 };
