@@ -4,10 +4,22 @@
 module.exports = {
   reactStrictMode: true,
   webpack: (config) => {
-    const LicenseWebpackPlugin = require("license-webpack-plugin").LicenseWebpackPlugin;
+    // const LicenseWebpackPlugin = require("license-webpack-plugin").LicenseWebpackPlugin;
+    // config.plugins = config.plugins || [];
+    // const options = {
+    //   addBanner: true,
+    // };
+    // config.plugins.push(new LicenseWebpackPlugin(options));
+
+    const LicensePlugin = require("webpack-license-plugin");
     config.plugins = config.plugins || [];
-    const options = { addBanner: true };
-    config.plugins.push(new LicenseWebpackPlugin(options));
+    const options = {
+      outputFilename: "licenses.json",
+      licenseOverrides: {
+        MIT: "MIT",
+      },
+    };
+    config.plugins.push(new LicensePlugin(options));
     return config;
   },
 };

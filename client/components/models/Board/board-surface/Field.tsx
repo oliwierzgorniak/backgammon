@@ -18,7 +18,8 @@ const getShape: getShapeType = (p) => {
 type getCorrectionType = (isLelvel0: boolean, isRight: boolean) => { x: number; y: number; z: number };
 const getCorrection: getCorrectionType = (isLevel0, isRight) => {
   const zOffset = -(BoardData.fieldHeight + BoardData.ySeperationHeight / 2);
-  const xOffset = isRight ? -BoardData.fieldWidth / 3 : BoardData.fieldWidth / 3; // adjusting right side
+  // const xOffset = isRight ? -BoardData.fieldWidth / 3 : BoardData.fieldWidth / 3; // adjusting right side
+  const xOffset = 0;
 
   let correctionL0 = { x: xOffset, y: -(BoardData.fieldHeight + BoardData.ySeperationHeight / 2), z: zOffset };
   let correctionL1 = {
@@ -61,7 +62,7 @@ const Field = ({ x, y, isLevel0, isRight }: Props) => {
             key={i}
           >
             <shapeGeometry args={[shape]} />
-            <meshToonMaterial color={i === 0 || i === 3 ? Colors.triangle1[0] : Colors.triangle2[0]} />
+            <meshToonMaterial color={i === 0 || i === 3 ? Colors.triangle0[0] : Colors.triangle1[0]} />
           </mesh>
         );
       })}

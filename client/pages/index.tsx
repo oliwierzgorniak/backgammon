@@ -1,10 +1,12 @@
 // compents
 import { Canvas } from "@react-three/fiber";
 import { OrbitControls } from "@react-three/drei";
+import Checker from "../components/models/Checker";
 
 // data
 import Board from "../components/models/Board";
 import Colors from "../data/Colors";
+import checkers from "../data/schemas/checkers";
 
 // types
 import type { NextPage } from "next";
@@ -22,6 +24,9 @@ const Game: NextPage = () => {
       <OrbitControls />
       <directionalLight color={"#ffffff"} intensity={1} />
       <Board />
+      {checkers.map((c, i) => (
+        <Checker x={c.x} z={c.z} isColor0={i <= 14} key={1} />
+      ))}
       {/* <axesHelper args={[100]} /> */}
     </Canvas>
   );

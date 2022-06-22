@@ -1,8 +1,8 @@
 // data
-import BoardData from "../../../data/Board";
-import Colors from "../../../data/Colors";
 import fieldsPostions from "../../../data/schemas/fieldsPostions";
-import separationsX from "../../../data/schemas/seperationsPositions";
+import separationsX from "../../../data/schemas/seperations";
+
+// componenets
 import Field from "./board-surface/Field";
 import SeperationY from "./board-surface/SeperationY";
 

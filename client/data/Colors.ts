@@ -1,14 +1,18 @@
 class Colors {
   scene: string[];
   board: string[];
+  triangle0: number[];
   triangle1: number[];
-  triangle2: number[];
+  checker0: number[];
+  checker1: number[];
 
   constructor() {
     this.scene = ["#8dbdbd"];
     this.board = ["#363062"];
-    this.triangle1 = [0x827397];
-    this.triangle2 = [0x4d4c7d];
+    this.triangle0 = [0x827397];
+    this.triangle1 = [0x4d4c7d];
+    this.checker0 = [0x000000];
+    this.checker1 = [0xc54832];
   }
 }
 
