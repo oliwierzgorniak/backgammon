@@ -15,13 +15,14 @@ const getShape: getShapeType = (p) => {
   return shape;
 };
 
-type getCorrectionType = (isLelvel0: boolean) => { x: number; y: number; z: number };
-const getCorrection: getCorrectionType = (isLevel0) => {
+type getCorrectionType = (isLelvel0: boolean, isRight: boolean) => { x: number; y: number; z: number };
+const getCorrection: getCorrectionType = (isLevel0, isRight) => {
   const zOffset = -(BoardData.fieldHeight + BoardData.ySeperationHeight / 2);
+  const xOffset = isRight ? -BoardData.fieldWidth / 3 : BoardData.fieldWidth / 3; // adjusting right side
 
-  const correctionL0 = { x: 0, y: -(BoardData.fieldHeight + BoardData.ySeperationHeight / 2), z: zOffset };
-  const correctionL1 = {
-    x: BoardData.fieldWidth,
+  let correctionL0 = { x: xOffset, y: -(BoardData.fieldHeight + BoardData.ySeperationHeight / 2), z: zOffset };
+  let correctionL1 = {
+    x: BoardData.fieldWidth + xOffset,
     y: BoardData.ySeperationHeight / 2,
     z: 2 * BoardData.fieldHeight + BoardData.ySeperationHeight + zOffset,
   };
@@ -43,13 +44,14 @@ interface Props {
   x: number;
   y: number;
   isLevel0: boolean;
+  isRight: boolean;
 }
-const Field = ({ x, y, isLevel0 }: Props) => {
+const Field = ({ x, y, isLevel0, isRight }: Props) => {
   return (
     <group>
       {fieldSchema.map((points, i) => {
         const shape = getShape(points);
-        const correction = getCorrection(isLevel0);
+        const correction = getCorrection(isLevel0, isRight);
         const rotation = getRotation(isLevel0);
 
         return (
