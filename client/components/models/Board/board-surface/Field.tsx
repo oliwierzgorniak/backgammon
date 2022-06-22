@@ -1,4 +1,4 @@
-import { Color, Shape } from "three";
+import { Shape } from "three";
 
 // data
 import BoardData from "../../../../data/Board";
@@ -17,11 +17,13 @@ const getShape: getShapeType = (p) => {
 
 type getCorrectionType = (isLelvel0: boolean) => { x: number; y: number; z: number };
 const getCorrection: getCorrectionType = (isLevel0) => {
-  const correctionL0 = { x: 0, y: -(BoardData.fieldHeight + BoardData.ySeperationHeight / 2), z: 0 };
+  const zOffset = -(BoardData.fieldHeight + BoardData.ySeperationHeight / 2);
+
+  const correctionL0 = { x: 0, y: -(BoardData.fieldHeight + BoardData.ySeperationHeight / 2), z: zOffset };
   const correctionL1 = {
     x: BoardData.fieldWidth,
     y: BoardData.ySeperationHeight / 2,
-    z: 2 * BoardData.fieldHeight + BoardData.ySeperationHeight,
+    z: 2 * BoardData.fieldHeight + BoardData.ySeperationHeight + zOffset,
   };
 
   return isLevel0 ? correctionL0 : correctionL1;
@@ -34,6 +36,8 @@ const getRotation: getRotationType = (isLevel0) => {
 
   return isLevel0 ? rotationL0 : rotationL1;
 };
+
+///////////////////////////////
 
 interface Props {
   x: number;
