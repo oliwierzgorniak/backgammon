@@ -25,7 +25,14 @@ const Game: NextPage = () => {
       <directionalLight color={"#ffffff"} intensity={1} />
       <Board />
       {checkers.map((c, i) => (
-        <Checker x={c.x} z={c.z} isColor0={i <= 14} key={1} />
+        <Checker
+          x={c.x}
+          z={c.z}
+          isColor0={c.color === 0}
+          index={c.position.index}
+          level={c.position.level}
+          key={`checker${i}`}
+        />
       ))}
       {/* <axesHelper args={[100]} /> */}
     </Canvas>

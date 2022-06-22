@@ -10,10 +10,18 @@ const BoardSurface = () => {
   return (
     <group>
       {fieldsPostions.map((p, i) => {
-        return <Field x={p.x} y={p.y} isLevel0={i < 12} isRight={(i >= 0 && i <= 5) || (i >= 18 && i <= 23)} key={i} />;
+        return (
+          <Field
+            x={p.x}
+            y={p.y}
+            isLevel0={i < 12}
+            isRight={(i >= 0 && i <= 5) || (i >= 18 && i <= 23)}
+            key={`field${i}`}
+          />
+        );
       })}
-      {separationsX.map((x) => (
-        <SeperationY x={x} />
+      {separationsX.map((x, i) => (
+        <SeperationY x={x} key={`separation${i}`} />
       ))}
     </group>
   );

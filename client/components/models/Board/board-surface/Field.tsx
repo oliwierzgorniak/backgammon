@@ -59,7 +59,7 @@ const Field = ({ x, y, isLevel0, isRight }: Props) => {
           <mesh
             rotation={[rotation.x, rotation.y, rotation.z]}
             position={[x + correction.x, y + correction.y, correction.z]}
-            key={i}
+            key={`triangle${i}`}
           >
             <shapeGeometry args={[shape]} />
             <meshToonMaterial color={i === 0 || i === 3 ? Colors.triangle0[0] : Colors.triangle1[0]} />

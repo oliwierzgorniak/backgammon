@@ -5,13 +5,22 @@ type checkersT = { id: number; position: { index: number; level: number }; color
 const bottomLevel0 = BoardData.fieldHeight + BoardData.ySeperationHeight / 2 - BoardData.checkerR;
 const topLevel0 = -bottomLevel0;
 
+const margin = 0.2;
+
 const checkers: checkersT = [
   {
     id: 0,
     position: { index: 5, level: 0 },
-    color: 2,
-    x: 6 * BoardData.fieldWidth + BoardData.xSeperationWidth / 2 - BoardData.fieldWidth / 2,
+    color: 1,
+    x: 1 * BoardData.fieldWidth + BoardData.xSeperationWidth / 2 - BoardData.fieldWidth / 2,
     z: topLevel0,
+  },
+  {
+    id: 1,
+    position: { index: 5, level: 1 },
+    color: 1,
+    x: 1 * BoardData.fieldWidth + BoardData.xSeperationWidth / 2 - BoardData.fieldWidth / 2,
+    z: topLevel0 + 1 * (BoardData.checkerR * 2 + margin),
   },
   // { id: 1, position: { index: 5, level: 1 }, color: 2 },
   // { id: 2, position: { index: 5, level: 2 }, color: 2 },
@@ -28,6 +37,20 @@ const checkers: checkersT = [
   // { id: 13, position: { index: 23, level: 0 }, color: 2 },
   // { id: 14, position: { index: 23, level: 1 }, color: 2 },
 
+  {
+    id: 15,
+    position: { index: 0, level: 0 },
+    color: 0,
+    x: 6 * BoardData.fieldWidth + BoardData.xSeperationWidth / 2 - BoardData.fieldWidth / 2,
+    z: topLevel0,
+  },
+  {
+    id: 16,
+    position: { index: 0, level: 1 },
+    color: 0,
+    x: 6 * BoardData.fieldWidth + BoardData.xSeperationWidth / 2 - BoardData.fieldWidth / 2,
+    z: topLevel0 + 1 * (BoardData.checkerR * 2 + margin),
+  },
   // { id: 15, position: { index: 0, level: 0 }, color: 1 },
   // { id: 16, position: { index: 0, level: 1 }, color: 1 },
   // { id: 17, position: { index: 11, level: 0 }, color: 1 },

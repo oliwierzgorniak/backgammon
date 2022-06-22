@@ -11,7 +11,7 @@ class Colors {
     this.board = ["#363062"];
     this.triangle0 = [0x827397];
     this.triangle1 = [0x4d4c7d];
-    this.checker0 = [0x000000];
+    this.checker0 = [0xaaaaaa];
     this.checker1 = [0xc54832];
   }
 }
