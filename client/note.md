@@ -12,3 +12,4 @@
 - https://spectrum.chat/react-three-fiber/general/lookat-camera-in-three-fiber-react~e2531f56-144e-41e3-a044-df920b84d6a9
 - https://blog.cjgammon.com/threejs-geometry/
 - https://dev.to/manan30/creating-a-rudimentary-pool-table-game-using-react-three-js-and-react-three-fiber-part-2-35hb
+- https://stackoverflow.com/questions/57803/how-to-convert-decimal-to-hexadecimal-in-javascript

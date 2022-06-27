@@ -22,13 +22,13 @@ const Game: NextPage = () => {
       style={{ height: "100vh" }}
     >
       <OrbitControls />
-      <directionalLight color={"#ffffff"} intensity={1} />
+      <directionalLight color={"#ffffff"} intensity={0.6} />
       <Board />
       {checkers.map((c, i) => (
         <Checker
           x={c.x}
           z={c.z}
-          isColor0={c.color === 0}
+          color={c.color}
           index={c.position.index}
           level={c.position.level}
           key={`checker${i}`}
