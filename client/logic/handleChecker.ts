@@ -11,6 +11,15 @@ type handleCheckerType = (e: any) => void;
 const handleChecker: handleCheckerType = (e) => {
   let checker = e.object;
 
+  // not top checker
+  const cIndex = checker.userData.index;
+  const cLevel = checker.userData.level;
+  const isTop = Logic.checkers[cIndex].length - 1 !== cLevel;
+  if (isTop) {
+    console.log("checker not on top");
+    return;
+  }
+
   // let selectedChecker = store.getState().selectedChecker.value;
 
   if (checker.userData.isSelected) {

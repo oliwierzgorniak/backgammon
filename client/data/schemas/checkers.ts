@@ -1,13 +1,13 @@
 import BoardData from "../Board";
 
-type checkersT = { id: number; position: { index: number; level: number }; color: number; x: number; z: number }[];
+type checkersType = { id: number; position: { index: number; level: number }; color: number; x: number; z: number }[];
 
 const bottomLevel0 = BoardData.fieldHeight + BoardData.ySeperationHeight / 2 - BoardData.checkerR;
 const topLevel0 = -bottomLevel0;
 
 const margin = 0.2;
 
-const checkers: checkersT = [
+const checkers: checkersType = [
   {
     id: 0,
     position: { index: 5, level: 0 },
@@ -68,4 +68,5 @@ const checkers: checkersT = [
   // { id: 29, position: { index: 18, level: 4 }, color: 1 },
 ];
 
+export type { checkersType };
 export default checkers;

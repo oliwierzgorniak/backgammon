@@ -1,6 +1,7 @@
 // data
 import BoardData from "../../../data/Board";
 import Colors from "../../../data/Colors";
+import Logic from "../../../data/Logic";
 
 const Stand = () => {
   return (
