@@ -14,3 +14,6 @@
 - https://dev.to/manan30/creating-a-rudimentary-pool-table-game-using-react-three-js-and-react-three-fiber-part-2-35hb
 - https://stackoverflow.com/questions/57803/how-to-convert-decimal-to-hexadecimal-in-javascript
 - https://discourse.threejs.org/t/apply-color-to-obj/17505/2
+- https://redux.js.org/introduction/getting-started
+- https://www.youtube.com/watch?v=iBUJVy8phqw
+- https://github.com/vercel/next.js/blob/canary/examples/with-redux/src/pages/_app.tsx
