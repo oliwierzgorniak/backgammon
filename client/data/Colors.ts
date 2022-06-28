@@ -14,7 +14,7 @@ class Colors {
     this.triangle1 = [0x4d4c7d];
     this.checker0 = [0xffffff];
     this.checker1 = [0xc54832];
-    this.checkerSelected = [0xb3a637];
+    this.checkerSelected = [0xd3c333];
   }
 }
 
