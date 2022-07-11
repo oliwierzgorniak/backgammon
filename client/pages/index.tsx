@@ -19,6 +19,7 @@ const Game: NextPage = () => {
         camera.lookAt(0, 0, 2.7);
         gl.setClearColor(Colors.scene[0]);
       }}
+      className="p-0 m-0"
       style={{ height: "100vh" }}
     >
       <OrbitControls />
