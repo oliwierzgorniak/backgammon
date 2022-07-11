@@ -4,6 +4,7 @@
 class Logic {
   checkers: any[][];
   selectedChecker: any;
+  diceNumbers: number[];
 
   constructor() {
     this.checkers = [
@@ -40,6 +41,7 @@ class Logic {
       [],
     ];
     this.selectedChecker = undefined;
+    this.diceNumbers = [];
   }
 }
 
