@@ -12,7 +12,6 @@ const handleClick: handleClickType = (dice0, dice1) => {
   const ICON_PATH = "/icons/dice/";
   dice0.src = ICON_PATH + diceNumbers[0] + ".svg";
   dice1.src = ICON_PATH + diceNumbers[1] + ".svg";
-  console.log(dice0);
 };
 
 const DiceSection = () => {
@@ -20,7 +19,7 @@ const DiceSection = () => {
   let dice1Ref = useRef(null);
 
   return (
-    <div className="flex gap-x-4 items-center absolute z-10 p-3 bg-slate-300 rounded-br">
+    <div className="flex gap-x-3 items-center absolute z-10 p-3 bg-slate-300 rounded-br">
       <div className="flex gap-x-3">
         <img ref={dice0Ref} className="max-w-[4em]" src="/icons/dice/6.svg" alt="dice" />
         <img ref={dice1Ref} className="max-w-[4em]" src="/icons/dice/6.svg" alt="dice" />

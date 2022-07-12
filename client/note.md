@@ -17,3 +17,4 @@
 - https://redux.js.org/introduction/getting-started
 - https://www.youtube.com/watch?v=iBUJVy8phqw
 - https://github.com/vercel/next.js/blob/canary/examples/with-redux/src/pages/_app.tsx
+- https://spectrum.chat/react-three-fiber/general/raycasting-e-g-onclick-noob-tips~be3da813-7cd0-45b9-a30b-7f43163b3e92

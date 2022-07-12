@@ -4,6 +4,7 @@ import { Shape } from "three";
 import BoardData from "../../../../data/Board";
 import Colors from "../../../../data/Colors";
 import fieldSchema from "../../../../data/schemas/field";
+import handleField from "../../../../logic/handleField";
 
 type getShapeType = ([{ x, y }]: { x: number; y: number }[]) => Shape;
 const getShape: getShapeType = (p) => {
@@ -49,7 +50,7 @@ interface Props {
 }
 const Field = ({ x, y, isLevel0, isRight }: Props) => {
   return (
-    <group>
+    <group onClick={handleField}>
       {fieldSchema.map((points, i) => {
         const shape = getShape(points);
         const correction = getCorrection(isLevel0, isRight);

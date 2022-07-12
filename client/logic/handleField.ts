@@ -1,12 +1,13 @@
 import Logic from "../data/Logic";
-
-import handleSelection from "./checker/handleSelection";
+import handleErrors from "./field/handleErrors";
 
 type handleFieldType = (e: any) => void;
 const handleField: handleFieldType = (e) => {
-  let field = e.object;
+  e.stopPropagation();
 
-  if (!Logic.selectedChecker) return;
+  handleErrors(Logic.selectedChecker, Logic.diceNumbers);
+
+  let field = e.object;
 };
 
 export default handleField;

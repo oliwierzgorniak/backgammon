@@ -9,6 +9,7 @@ import handleSelection from "./checker/handleSelection";
 
 type handleCheckerType = (e: any) => void;
 const handleChecker: handleCheckerType = (e) => {
+  e.stopPropagation();
   let checker = e.object;
 
   handleSelection(checker);
