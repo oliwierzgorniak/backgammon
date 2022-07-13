@@ -40,24 +40,56 @@ const getRotation: getRotationType = (isLevel0) => {
   return isLevel0 ? rotationL0 : rotationL1;
 };
 
+type getFieldPositionType = (index: number, isLevel0: boolean) => [number, number, number];
+const getFieldPosition: getFieldPositionType = (index, isLevel0) => {
+  let x;
+  if (index >= 0 && index <= 5) {
+    x =
+      -index * BoardData.fieldWidth -
+      BoardData.fieldWidth / 2 +
+      BoardData.fieldWidth * 6 +
+      BoardData.xSeperationWidth / 2;
+  } else if (index >= 6 && index <= 11) {
+    x = -index * BoardData.fieldWidth - BoardData.fieldWidth / 2 - BoardData.xSeperationWidth / 2;
+  } else if (index >= 12 && index <= 17) {
+    x =
+      index * BoardData.fieldWidth +
+      BoardData.fieldWidth / 2 -
+      BoardData.fieldWidth * 6 -
+      BoardData.xSeperationWidth / 2;
+  } else if (index >= 18 && index <= 23) {
+    x = index * BoardData.fieldWidth - BoardData.fieldWidth / 2 + BoardData.xSeperationWidth / 2;
+  }
+
+  const z = isLevel0
+    ? -BoardData.fieldHeight + BoardData.checkerR - BoardData.ySeperationHeight / 2
+    : BoardData.fieldHeight - BoardData.checkerR + BoardData.ySeperationHeight / 2;
+
+  return [x, 0, z];
+};
+
 ///////////////////////////////
 
 interface Props {
+  index: number;
   x: number;
   y: number;
   isLevel0: boolean;
   isRight: boolean;
 }
-const Field = ({ x, y, isLevel0, isRight }: Props) => {
+const Field = ({ index, x, y, isLevel0, isRight }: Props) => {
   return (
-    <group onClick={handleField}>
+    <object3D name={String(index)} onClick={handleField}>
       {fieldSchema.map((points, i) => {
         const shape = getShape(points);
         const correction = getCorrection(isLevel0, isRight);
         const rotation = getRotation(isLevel0);
+        const fieldPosition = getFieldPosition(index, isLevel0);
+        // console.log(fieldPosition);
 
         return (
           <mesh
+            userData={{ index: index, fieldPosition: fieldPosition }}
             rotation={[rotation.x, rotation.y, rotation.z]}
             position={[x + correction.x, y + correction.y, correction.z]}
             key={`triangle${i}`}
@@ -67,7 +99,7 @@ const Field = ({ x, y, isLevel0, isRight }: Props) => {
           </mesh>
         );
       })}
-    </group>
+    </object3D>
   );
 };
 

@@ -12,6 +12,7 @@ const BoardSurface = () => {
       {fieldsPostions.map((p, i) => {
         return (
           <Field
+            index={i}
             x={p.x}
             y={p.y}
             isLevel0={i < 12}

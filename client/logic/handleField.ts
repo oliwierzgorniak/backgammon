@@ -2,14 +2,15 @@ import Logic from "../data/Logic";
 import handleErrors from "./field/handleErrors";
 import handleMove from "./field/handleMove";
 
-type handleFieldType = (e: any) => void;
-const handleField: handleFieldType = (e) => {
+type handleTriangleType = (e: any) => void;
+const handleTriangle: handleTriangleType = (e) => {
   e.stopPropagation();
 
   handleErrors();
 
-  let field = e.object;
-  handleMove(field);
+  let triangle = e.object;
+  console.log(triangle.position);
+  handleMove(triangle);
 };
 
-export default handleField;
+export default handleTriangle;
