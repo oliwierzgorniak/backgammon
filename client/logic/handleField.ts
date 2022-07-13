@@ -5,7 +5,7 @@ type handleFieldType = (e: any) => void;
 const handleField: handleFieldType = (e) => {
   e.stopPropagation();
 
-  handleErrors(Logic.selectedChecker, Logic.diceNumbers);
+  handleErrors();
 
   let field = e.object;
 };

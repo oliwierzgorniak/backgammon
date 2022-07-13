@@ -1,11 +1,13 @@
-type handleErrorsType = (selectedChecker: any, diceNumbers: number[]) => void;
-const handleErrors: handleErrorsType = (selectedChecker, diceNumbers) => {
-  if (!selectedChecker) {
+import Logic from "../../data/Logic";
+
+type handleErrorsType = () => void;
+const handleErrors: handleErrorsType = () => {
+  if (!Logic.selectedChecker) {
     console.log("Checker not selected");
     return;
   }
 
-  if (diceNumbers.length === 0) {
+  if (Logic.diceNumbers.length === 0) {
     console.log("Dice not thrown");
     return;
   }

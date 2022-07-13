@@ -1,4 +1,5 @@
 import Logic from "../data/Logic";
+import findAvailableMoves from "./checker/findAvailableMoves";
 
 import handleSelection from "./checker/handleSelection";
 
@@ -13,6 +14,7 @@ const handleChecker: handleCheckerType = (e) => {
   let checker = e.object;
 
   handleSelection(checker);
+  findAvailableMoves(checker.userData.color, checker.userData.index);
 };
 
 export default handleChecker;
