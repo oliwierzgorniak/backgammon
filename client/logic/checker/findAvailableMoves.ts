@@ -9,6 +9,9 @@ const findAvailableMoves: findAvailableMovesType = (color, index) => {
     const last = Logic.checkers[index + n].length - 1;
     const iToCheck = color === 0 ? index + n : index - n;
 
+    const isSameMove = Logic.availableMoves.filter((m) => m.index === iToCheck).length > 0;
+    if (isSameMove) return;
+
     if (last === -1) {
       Logic.availableMoves.push({ type: "move", index: iToCheck });
     }
