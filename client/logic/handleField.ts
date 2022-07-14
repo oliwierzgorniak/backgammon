@@ -6,10 +6,15 @@ type handleTriangleType = (e: any) => void;
 const handleTriangle: handleTriangleType = (e) => {
   e.stopPropagation();
 
-  handleErrors();
+  try {
+    handleErrors();
+  } catch (err) {
+    console.error(err);
+    return;
+  }
 
   let triangle = e.object;
-  console.log(triangle.position);
+  console.log(Logic.checkers[triangle.userData.index]);
   handleMove(triangle);
 };
 

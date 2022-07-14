@@ -26,11 +26,21 @@ const Checker = ({ x, z, color, index, level }: Props) => {
   let [p, setP] = useState([x, 0, z]);
   let { position } = useSpring({ position: p });
 
+  let [checkerIndex, setCheckerIndex] = useState(index);
+  let [checkerLevel, setCheckerLevel] = useState(level);
+
   return (
     <animated.mesh
       ref={mesh}
       position={position}
-      userData={{ index: index, level: level, color: color, setPosition: setP }}
+      userData={{
+        index: checkerIndex,
+        level: checkerLevel,
+        color: color,
+        setPosition: setP,
+        setIndex: setCheckerIndex,
+        setLevel: setCheckerLevel,
+      }}
       onClick={handleChecker}
     >
       <cylinderGeometry args={[BoardData.checkerR, BoardData.checkerR, BoardData.checkerHeight, 25]} />

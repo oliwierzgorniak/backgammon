@@ -21,7 +21,6 @@ const findAvailableMoves: findAvailableMovesType = (color, index) => {
     if (last >= 0 && last <= 4 && Logic.checkers[iToCheck][last].userData.color === color) {
       Logic.availableMoves.push({ type: "move", index: iToCheck });
     }
-    console.log(Logic.availableMoves);
   });
 };
 
