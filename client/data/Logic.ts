@@ -7,6 +7,8 @@ class Logic {
   diceNumbers: number[];
   availableMoves: { type: string; index: number }[];
   bar: any[][];
+  usersColor: number;
+  checkersInFinalZone: number;
 
   constructor() {
     this.checkers = [
@@ -46,6 +48,8 @@ class Logic {
     this.diceNumbers = [];
     this.availableMoves = [];
     this.bar = [[], []];
+    this.usersColor = 0; // TODO assigning color
+    this.checkersInFinalZone = 0;
   }
 }
 

@@ -32,6 +32,8 @@ const Checker = ({ x, z, color, index, level }: Props) => {
   let [checkerBarSection, setCheckerBarSection] = useState(undefined);
   let [checkerBarLevel, setCheckerBarLevel] = useState(undefined);
 
+  let [isInFinalZone, setIsInFinalZone] = useState(false);
+
   return (
     <animated.mesh
       ref={mesh}
@@ -47,6 +49,8 @@ const Checker = ({ x, z, color, index, level }: Props) => {
         barLevel: checkerBarLevel,
         setBarSection: setCheckerBarSection,
         setBarLevel: setCheckerBarLevel,
+        isInFinalZone: isInFinalZone,
+        setIsInFinalZone: setIsInFinalZone,
       }}
       onClick={handleChecker}
     >

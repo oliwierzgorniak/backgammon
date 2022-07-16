@@ -19,6 +19,17 @@ const handleTriangle: handleTriangleType = (e) => {
   const move = Logic.availableMoves.filter((m) => {
     return m.index === triangle.userData.index;
   })[0];
+
+  if (!move) return;
+  const isCheckerInFinalZone = Logic.usersColor === 0 ? move.index >= 17 : move.index <= 5;
+  const isUsersChecker = Logic.selectedChecker.userData.color === Logic.usersColor;
+  const isInFinalZone = Logic.selectedChecker.userData.isInFinalZone;
+  if (isUsersChecker && isCheckerInFinalZone && !isInFinalZone) {
+    Logic.selectedChecker.userData.setIsInFinalZone(true);
+    Logic.checkersInFinalZone++;
+    console.log("checkersInFinalZone increased");
+  }
+
   if (move && move.type === "move") {
     handleMove(triangle);
   } else if (move && move.type === "capture") {
