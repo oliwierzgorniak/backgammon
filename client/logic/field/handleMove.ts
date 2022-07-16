@@ -34,13 +34,10 @@ const handleMove: handleMoveType = (triangle) => {
   Logic.selectedChecker.userData.setLevel(newLevel);
   Logic.selectedChecker.userData.setIndex(triangle.userData.index);
   Logic.checkers[triangle.userData.index].push(Logic.selectedChecker);
-  // console.log(Logic.checkers);
 
   // animation
   let positionL0 = triangle.userData.fieldPosition;
-  console.log(positionL0[2]);
   positionL0[2] = getZPosition(newLevel, positionL0[2]);
-  console.log(positionL0[2]);
   Logic.selectedChecker.userData.setPosition(triangle.userData.fieldPosition);
   Logic.selectedChecker.userData.isSelected = false;
   Logic.selectedChecker = undefined;

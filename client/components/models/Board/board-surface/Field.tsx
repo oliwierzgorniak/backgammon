@@ -50,15 +50,15 @@ const getFieldPosition: getFieldPositionType = (index, isLevel0) => {
       BoardData.fieldWidth * 6 +
       BoardData.xSeperationWidth / 2;
   } else if (index >= 6 && index <= 11) {
-    x = -index * BoardData.fieldWidth - BoardData.fieldWidth / 2 - BoardData.xSeperationWidth / 2;
+    x = -(index - 6) * BoardData.fieldWidth - BoardData.fieldWidth / 2 - BoardData.xSeperationWidth / 2;
   } else if (index >= 12 && index <= 17) {
     x =
-      index * BoardData.fieldWidth +
+      (index - 12) * BoardData.fieldWidth +
       BoardData.fieldWidth / 2 -
       BoardData.fieldWidth * 6 -
       BoardData.xSeperationWidth / 2;
   } else if (index >= 18 && index <= 23) {
-    x = index * BoardData.fieldWidth - BoardData.fieldWidth / 2 + BoardData.xSeperationWidth / 2;
+    x = (index - 18) * BoardData.fieldWidth + BoardData.fieldWidth / 2 + BoardData.xSeperationWidth / 2;
   }
 
   const z = isLevel0
@@ -85,7 +85,6 @@ const Field = ({ index, x, y, isLevel0, isRight }: Props) => {
         const correction = getCorrection(isLevel0, isRight);
         const rotation = getRotation(isLevel0);
         const fieldPosition = getFieldPosition(index, isLevel0);
-        // console.log(fieldPosition);
 
         return (
           <mesh
