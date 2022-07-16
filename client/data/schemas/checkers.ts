@@ -5,8 +5,6 @@ type checkersType = { id: number; position: { index: number; level: number }; co
 const bottomLevel0 = BoardData.fieldHeight + BoardData.ySeperationHeight / 2 - BoardData.checkerR;
 const topLevel0 = -bottomLevel0;
 
-const margin = 0.2;
-
 const checkers: checkersType = [
   {
     id: 0,
@@ -20,7 +18,7 @@ const checkers: checkersType = [
     position: { index: 5, level: 1 },
     color: 1,
     x: 1 * BoardData.fieldWidth + BoardData.xSeperationWidth / 2 - BoardData.fieldWidth / 2,
-    z: topLevel0 + 1 * (BoardData.checkerR * 2 + margin),
+    z: topLevel0 + 1 * (BoardData.checkerR * 2 + BoardData.checkerMargin),
   },
   // { id: 1, position: { index: 5, level: 1 }, color: 2 },
   // { id: 2, position: { index: 5, level: 2 }, color: 2 },
@@ -49,7 +47,7 @@ const checkers: checkersType = [
     position: { index: 0, level: 1 },
     color: 0,
     x: 6 * BoardData.fieldWidth + BoardData.xSeperationWidth / 2 - BoardData.fieldWidth / 2,
-    z: topLevel0 + 1 * (BoardData.checkerR * 2 + margin),
+    z: topLevel0 + 1 * (BoardData.checkerR * 2 + BoardData.checkerMargin),
   },
   // { id: 15, position: { index: 0, level: 0 }, color: 1 },
   // { id: 16, position: { index: 0, level: 1 }, color: 1 },

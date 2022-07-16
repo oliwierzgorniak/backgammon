@@ -11,6 +11,7 @@ class Board {
   boardDepth: number;
   checkerR: number;
   checkerHeight: number;
+  checkerMargin: number;
 
   constructor() {
     this.fieldWidth = 3;
@@ -25,6 +26,7 @@ class Board {
     this.boardDepth = this.xSeperationHeight + this.boardPadding * 2;
     this.checkerR = 1.2;
     this.checkerHeight = 1;
+    this.checkerMargin = 0.2;
   }
 }
 

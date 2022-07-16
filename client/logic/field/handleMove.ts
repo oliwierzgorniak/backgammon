@@ -1,6 +1,16 @@
 import { Color } from "three";
 import Colors from "../../data/Colors";
+import Board from "../../data/Board";
 import Logic from "../../data/Logic";
+
+type getZPositionType = (level: number, z0: number) => void;
+const getZPosition: getZPositionType = (level, z0) => {
+  if (z0 < 0) {
+    return z0 + level * (Board.checkerR * 2 + Board.checkerMargin);
+  } else {
+    return z0 - level * (Board.checkerR * 2 + Board.checkerMargin);
+  }
+};
 
 type handleMoveType = (triangle: any) => void;
 const handleMove: handleMoveType = (triangle) => {
@@ -27,6 +37,10 @@ const handleMove: handleMoveType = (triangle) => {
   // console.log(Logic.checkers);
 
   // animation
+  let positionL0 = triangle.userData.fieldPosition;
+  console.log(positionL0[2]);
+  positionL0[2] = getZPosition(newLevel, positionL0[2]);
+  console.log(positionL0[2]);
   Logic.selectedChecker.userData.setPosition(triangle.userData.fieldPosition);
   Logic.selectedChecker.userData.isSelected = false;
   Logic.selectedChecker = undefined;
