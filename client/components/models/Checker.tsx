@@ -43,6 +43,8 @@ const Checker = ({ x, z, color, index, level }: Props) => {
         setPosition: setP,
         setIndex: setCheckerIndex,
         setLevel: setCheckerLevel,
+        barSection: checkerBarSection,
+        barLevel: checkerBarLevel,
         setBarSection: setCheckerBarSection,
         setBarLevel: setCheckerBarLevel,
       }}

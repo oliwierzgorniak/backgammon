@@ -1,12 +1,20 @@
 import Logic from "../../data/Logic";
 
-type findAvailableMovesType = (color: number, index: number) => void;
-const findAvailableMoves: findAvailableMovesType = (color, index) => {
+type findAvailableMovesType = (color: number, isOnBar: boolean, index: number) => void;
+const findAvailableMoves: findAvailableMovesType = (color, isOnBar, index) => {
   Logic.availableMoves = [];
+
   const nums = Logic.diceNumbers;
 
   nums.forEach((n) => {
-    const iToCheck = color === 0 ? index + n : index - n;
+    let iToCheck: number;
+
+    if (isOnBar) {
+      iToCheck = color === 0 ? n - 1 : 23 - n + 1;
+    } else {
+      iToCheck = color === 0 ? index + n : index - n;
+    }
+
     if (iToCheck < 0 || iToCheck > 23) return;
     const last = Logic.checkers[iToCheck].length - 1;
 

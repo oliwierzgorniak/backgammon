@@ -9,10 +9,14 @@ type handleSelectionType = (checker: any) => void;
 const handleSelection: handleSelectionType = (checker) => {
   const cIndex = checker.userData.index;
   const cLevel = checker.userData.level;
-  const isTop = Logic.checkers[cIndex].length - 1 === cLevel;
-  if (!isTop) {
-    console.error("checker not on top");
-    return;
+
+  const isOnBar = typeof checker.userData.index === "undefined";
+  if (!isOnBar) {
+    const isTop = Logic.checkers[cIndex].length - 1 === cLevel;
+    if (!isTop) {
+      console.error("checker not on top");
+      return;
+    }
   }
 
   if (checker.userData.isSelected) {

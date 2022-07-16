@@ -14,7 +14,7 @@ const handleChecker: handleCheckerType = (e) => {
   let checker = e.object;
 
   handleSelection(checker);
-  findAvailableMoves(checker.userData.color, checker.userData.index);
+  findAvailableMoves(checker.userData.color, typeof checker.userData.index === "undefined", checker.userData.index);
 };
 
 export default handleChecker;
