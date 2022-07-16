@@ -1,16 +1,7 @@
 import { Color } from "three";
 import Colors from "../../data/Colors";
-import Board from "../../data/Board";
 import Logic from "../../data/Logic";
-
-type getZPositionType = (level: number, z0: number) => void;
-const getZPosition: getZPositionType = (level, z0) => {
-  if (z0 < 0) {
-    return z0 + level * (Board.checkerR * 2 + Board.checkerMargin);
-  } else {
-    return z0 - level * (Board.checkerR * 2 + Board.checkerMargin);
-  }
-};
+import getZPosition from "./utils/getZPosition";
 
 type handleMoveType = (triangle: any) => void;
 const handleMove: handleMoveType = (triangle) => {
@@ -20,11 +11,11 @@ const handleMove: handleMoveType = (triangle) => {
 
   // logic
   const isOnBar = typeof Logic.selectedChecker.userData.index === "undefined";
+  const newLevel = Logic.checkers[triangle.userData.index].length;
   if (isOnBar) {
     const section = Logic.selectedChecker.userData.barSection;
     const level = Logic.selectedChecker.userData.barLevel;
     Logic.bar[section][level] = null;
-    const newLevel = 0;
     Logic.selectedChecker.userData.setLevel(newLevel);
     Logic.selectedChecker.userData.setIndex(triangle.userData.index);
     Logic.selectedChecker.userData.setBarLevel(undefined);
@@ -35,7 +26,6 @@ const handleMove: handleMoveType = (triangle) => {
     const level = Logic.selectedChecker.userData.level;
     const fieldArr = Logic.checkers[index];
     Logic.checkers[index] = fieldArr.slice(0, level);
-    const newLevel = 0;
     Logic.selectedChecker.userData.setLevel(newLevel);
     Logic.selectedChecker.userData.setIndex(triangle.userData.index);
     Logic.checkers[triangle.userData.index].push(Logic.selectedChecker);
@@ -43,7 +33,7 @@ const handleMove: handleMoveType = (triangle) => {
 
   // animation
   let position = triangle.userData.fieldPosition;
-  position[2] = getZPosition(0, position[2]);
+  position[2] = getZPosition(newLevel, position[2]);
   Logic.selectedChecker.userData.setPosition(position);
   Logic.selectedChecker.userData.isSelected = false;
   Logic.selectedChecker = undefined;
