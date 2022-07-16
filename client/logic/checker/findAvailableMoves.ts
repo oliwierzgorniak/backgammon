@@ -6,8 +6,9 @@ const findAvailableMoves: findAvailableMovesType = (color, index) => {
   const nums = Logic.diceNumbers;
 
   nums.forEach((n) => {
-    const last = Logic.checkers[index + n].length - 1;
     const iToCheck = color === 0 ? index + n : index - n;
+    if (iToCheck < 0 || iToCheck > 23) return;
+    const last = Logic.checkers[iToCheck].length - 1;
 
     const isSameMove = Logic.availableMoves.filter((m) => m.index === iToCheck).length > 0;
     if (isSameMove) return;
@@ -22,6 +23,7 @@ const findAvailableMoves: findAvailableMovesType = (color, index) => {
       Logic.availableMoves.push({ type: "move", index: iToCheck });
     }
   });
+  console.log(Logic.availableMoves);
 };
 
 export default findAvailableMoves;

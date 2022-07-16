@@ -40,7 +40,7 @@ const getRotation: getRotationType = (isLevel0) => {
   return isLevel0 ? rotationL0 : rotationL1;
 };
 
-type getFieldPositionType = (index: number, isLevel0: boolean) => [number, number, number];
+type getFieldPositionType = (index: number, isLevel0: boolean) => [number | undefined, number, number];
 const getFieldPosition: getFieldPositionType = (index, isLevel0) => {
   let x;
   if (index >= 0 && index <= 5) {

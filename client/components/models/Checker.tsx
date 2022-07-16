@@ -29,6 +29,9 @@ const Checker = ({ x, z, color, index, level }: Props) => {
   let [checkerIndex, setCheckerIndex] = useState(index);
   let [checkerLevel, setCheckerLevel] = useState(level);
 
+  let [checkerBarSection, setCheckerBarSection] = useState(undefined);
+  let [checkerBarLevel, setCheckerBarLevel] = useState(undefined);
+
   return (
     <animated.mesh
       ref={mesh}
@@ -40,6 +43,8 @@ const Checker = ({ x, z, color, index, level }: Props) => {
         setPosition: setP,
         setIndex: setCheckerIndex,
         setLevel: setCheckerLevel,
+        setBarSection: setCheckerBarSection,
+        setBarLevel: setCheckerBarLevel,
       }}
       onClick={handleChecker}
     >

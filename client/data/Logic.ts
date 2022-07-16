@@ -5,7 +5,8 @@ class Logic {
   checkers: any[][];
   selectedChecker: any;
   diceNumbers: number[];
-  availableMoves: {type: string, index: number}[];
+  availableMoves: { type: string; index: number }[];
+  bar: any[][];
 
   constructor() {
     this.checkers = [
@@ -44,6 +45,7 @@ class Logic {
     this.selectedChecker = undefined;
     this.diceNumbers = [];
     this.availableMoves = [];
+    this.bar = [[], []];
   }
 }
 

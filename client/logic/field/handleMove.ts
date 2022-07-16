@@ -14,12 +14,6 @@ const getZPosition: getZPositionType = (level, z0) => {
 
 type handleMoveType = (triangle: any) => void;
 const handleMove: handleMoveType = (triangle) => {
-  const moveAvailable =
-    Logic.availableMoves.filter((move) => {
-      return move.index === triangle.userData.index;
-    }).length > 0;
-  if (!moveAvailable) return;
-
   // deselecting
   const cColor = Logic.selectedChecker.userData.color;
   Logic.selectedChecker.material.color = new Color(cColor === 0 ? Colors.checker0[0] : Colors.checker1[0]);
@@ -36,9 +30,9 @@ const handleMove: handleMoveType = (triangle) => {
   Logic.checkers[triangle.userData.index].push(Logic.selectedChecker);
 
   // animation
-  let positionL0 = triangle.userData.fieldPosition;
-  positionL0[2] = getZPosition(newLevel, positionL0[2]);
-  Logic.selectedChecker.userData.setPosition(triangle.userData.fieldPosition);
+  let c1position = triangle.userData.fieldPosition;
+  c1position[2] = getZPosition(newLevel, c1position[2]);
+  Logic.selectedChecker.userData.setPosition(c1position);
   Logic.selectedChecker.userData.isSelected = false;
   Logic.selectedChecker = undefined;
 };

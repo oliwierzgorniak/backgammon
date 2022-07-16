@@ -15,9 +15,6 @@ module.exports = {
     config.plugins = config.plugins || [];
     const options = {
       outputFilename: "licenses.json",
-      licenseOverrides: {
-        MIT: "MIT",
-      },
     };
     config.plugins.push(new LicensePlugin(options));
     return config;
