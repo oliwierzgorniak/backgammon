@@ -1,5 +1,5 @@
 // import type { Mesh } from "three";
-// import type { checkersType } from "../data/schemas/checkers";
+// import type { checkersType } from "../data/schemas/captureCheckers";
 
 class Logic {
   checkers: any[][];

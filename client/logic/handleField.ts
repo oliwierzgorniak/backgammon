@@ -1,7 +1,7 @@
 import Logic from "../data/Logic";
-import handleErrors from "./field/handleErrors";
-import handleMove from "./field/handleMove";
-import handleCapture from "./field/handleCapture";
+import handleErrors from "./handleField/handleErrors";
+import handleMove from "./handleField/handleMove";
+import handleCapture from "./handleField/handleCapture";
 
 type handleTriangleType = (e: any) => void;
 const handleTriangle: handleTriangleType = (e) => {

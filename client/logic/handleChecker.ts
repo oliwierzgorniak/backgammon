@@ -1,7 +1,6 @@
 import Logic from "../data/Logic";
-import findAvailableMoves from "./checker/findAvailableMoves";
-
-import handleSelection from "./checker/handleSelection";
+import findAvailableMoves from "./handleChecker/findAvailableMoves";
+import handleSelection from "./handleChecker/handleSelection";
 
 // // redux
 // import { useDispatch, useSelector } from "react-redux";
