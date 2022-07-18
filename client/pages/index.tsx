@@ -8,9 +8,11 @@ import DiceSection from "../components/ui/DiceSection";
 import Board from "../components/models/Board";
 import Colors from "../data/Colors";
 import checkers from "../data/schemas/checkers";
+import Logic from "../data/Logic";
 
 // types
 import type { NextPage } from "next";
+import handleCheckersInFinalInc from "../utils/handleCheckersInFinalInc";
 
 const Game: NextPage = () => {
   return (
@@ -28,16 +30,18 @@ const Game: NextPage = () => {
         {/* <OrbitControls /> */}
         <directionalLight color={"#ffffff"} intensity={0.9} />
         <Board />
-        {checkers.map((c, i) => (
-          <Checker
-            x={c.x}
-            z={c.z}
-            color={c.color}
-            index={c.position.index}
-            level={c.position.level}
-            key={`checker${i}`}
-          />
-        ))}
+        {checkers.map((c, i) => {
+          return (
+            <Checker
+              x={c.x}
+              z={c.z}
+              color={c.color}
+              index={c.position.index}
+              level={c.position.level}
+              key={`checker${i}`}
+            />
+          );
+        })}
         {/* <axesHelper args={[100]} /> */}
       </Canvas>
     </>

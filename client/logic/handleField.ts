@@ -2,6 +2,7 @@ import Logic from "../data/Logic";
 import handleErrors from "./handleField/handleErrors";
 import handleMove from "./handleField/handleMove";
 import handleCapture from "./handleField/handleCapture";
+import handleCheckersInFinalInc from "./handleField/utils/handleCheckersInFinalInc";
 
 type handleTriangleType = (e: any) => void;
 const handleTriangle: handleTriangleType = (e) => {
@@ -21,14 +22,7 @@ const handleTriangle: handleTriangleType = (e) => {
   })[0];
 
   if (!move) return;
-  const isCheckerInFinalZone = Logic.usersColor === 0 ? move.index >= 17 : move.index <= 5;
-  const isUsersChecker = Logic.selectedChecker.userData.color === Logic.usersColor;
-  const isInFinalZone = Logic.selectedChecker.userData.isInFinalZone;
-  if (isUsersChecker && isCheckerInFinalZone && !isInFinalZone) {
-    Logic.selectedChecker.userData.setIsInFinalZone(true);
-    Logic.checkersInFinalZone++;
-    console.log("checkersInFinalZone increased");
-  }
+  handleCheckersInFinalInc(move.index);
 
   if (move && move.type === "move") {
     handleMove(triangle);

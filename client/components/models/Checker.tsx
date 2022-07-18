@@ -7,6 +7,7 @@ import Colors from "../../data/Colors";
 import Logic from "../../data/Logic";
 
 import handleChecker from "../../logic/handleChecker";
+import handleCheckersInFinalInc from "../../utils/handleCheckersInFinalInc";
 
 interface Props {
   x: number;
@@ -21,6 +22,7 @@ const Checker = ({ x, z, color, index, level }: Props) => {
 
   useEffect(() => {
     Logic.checkers[index][level] = mesh.current;
+    handleCheckersInFinalInc(index, color);
   }, []);
 
   let [p, setP] = useState([x, 0, z]);
@@ -32,7 +34,8 @@ const Checker = ({ x, z, color, index, level }: Props) => {
   let [checkerBarSection, setCheckerBarSection] = useState(undefined);
   let [checkerBarLevel, setCheckerBarLevel] = useState(undefined);
 
-  let [isInFinalZone, setIsInFinalZone] = useState(false);
+  const isCheckerInFinalZone = color === 0 ? index >= 17 : index <= 5;
+  let [isInFinalZone, setIsInFinalZone] = useState(isCheckerInFinalZone);
 
   return (
     <animated.mesh

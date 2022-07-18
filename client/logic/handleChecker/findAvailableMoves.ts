@@ -31,7 +31,6 @@ const findAvailableMoves: findAvailableMovesType = (color, isOnBar, index) => {
       Logic.availableMoves.push({ type: "move", index: iToCheck });
     }
   });
-  console.log(Logic.availableMoves);
 };
 
 export default findAvailableMoves;

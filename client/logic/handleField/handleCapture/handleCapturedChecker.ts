@@ -1,11 +1,14 @@
 import Board from "../../../data/Board";
 import Logic from "../../../data/Logic";
+import handleCheckersInFinalDec from "../utils/handleCheckersInFinalDec";
 import getZPosition from "../utils/getZPosition";
 
 type handleCapturedCheckerType = (triangle: any) => void;
 const handleCapturedChecker: handleCapturedCheckerType = (triangle) => {
   // logic
   let checker = Logic.checkers[triangle.userData.index][0];
+  handleCheckersInFinalDec(checker);
+
   const index = checker.userData.index;
   const level = checker.userData.level;
   const color = checker.userData.color;
