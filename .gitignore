@@ -36,3 +36,9 @@ yarn-error.log*
 
 # typescript
 *.tsbuildinfo
+
+node_modules/
+dist/
+src/generated/
+*.env*
+pgdata
