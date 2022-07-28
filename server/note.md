@@ -6,3 +6,6 @@
 - https://www.prisma.io/docs/getting-started/quickstart
 - https://github.com/prisma/prisma/blob/main/LICENSE
 - https://www.code4it.dev/blog/run-postgresql-with-docker
+- https://github.com/prisma/prisma-examples/blob/latest/LICENSE
+- https://www.prisma.io/docs/concepts/components/prisma-client
+- https://www.youtube.com/watch?v=gAkwW2tuIqE
