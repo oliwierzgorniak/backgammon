@@ -1,8 +1,6 @@
 import { Request, Response } from "express";
-import { MikroORM } from "@mikro-orm/core";
 
 export type MyContext = {
-  em: MikroORM["em"];
-  req: Request;
+  req: Request & { session: Express.Session };
   res: Response;
 };

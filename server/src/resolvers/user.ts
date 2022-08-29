@@ -36,21 +36,21 @@ class UserResponse {
 
 @Resolver()
 export class UserResolver {
-  @Query(() => String)
-  async getUser(@Arg("username") username: string, @Ctx() { em }: MyContext) {
-    const user = await em.findOne(User, { username: username });
-    return user?.email;
+  @Query(() => User)
+  async getUser(@Arg("username") username: string) {
+    const user = await User.findOne({ where: username });
+    return user;
   }
 
-  @Query(() => String, { nullable: true })
-  async me(@Ctx() { req, em }: MyContext) {
+  @Query(() => User, { nullable: true })
+  async me(@Ctx() { req }: MyContext) {
     // you are not logged in
     if (!req.session!.userId) {
       return null;
     }
 
-    // const user = await emfindOne(User, { id: req.session!.userId });
-    return "text";
+    const user = await User.findOne(req.session.userId);
+    return user;
   }
 
   @Mutation(() => UserResponse)
@@ -58,7 +58,7 @@ export class UserResolver {
     @Arg("email") email: string,
     @Arg("username") username: string,
     @Arg("password") password: string,
-    @Ctx() { em, req }: MyContext
+    @Ctx() { req }: MyContext
   ): Promise<UserResponse> {
     if (username.length <= 2) {
       return {
@@ -83,32 +83,46 @@ export class UserResolver {
     }
 
     const hashedPassword = await argon2.hash(password);
-    const user = em.create(User, {
-      email: email,
-      username: username,
-      password: hashedPassword,
-    });
+    let user;
     try {
-      await em.persistAndFlush(user);
+      user = await User.create({
+        email: email,
+        username: username,
+        password: hashedPassword,
+      }).save();
     } catch (err) {
-      //|| err.detail.includes("already exists")) {
-      // duplicate username error
+      // unique key error
       if (err.code === "23505") {
-        return {
-          errors: [
-            {
-              field: "username",
-              message: "username already taken",
-            },
-          ],
-        };
+        if (err.detail.includes("username")) {
+          return {
+            errors: [
+              {
+                field: "username",
+                message: "username already used",
+              },
+            ],
+          };
+        }
+
+        if (err.detail.includes("email")) {
+          return {
+            errors: [
+              {
+                field: "email",
+                message: "email already used",
+              },
+            ],
+          };
+        }
       }
+
+      return {
+        errors: [{ message: "error while trying to add user to the database" }],
+      };
     }
 
-    // store user id session
-    // this will set a cookie on the user
-    // keep them logged in
-    // req.session!.userId = user.id;
+    // setting cookie
+    req.session.userId = user.id;
 
     return {
       successfulMessage: {
@@ -121,10 +135,9 @@ export class UserResolver {
   async login(
     @Arg("email") email: string,
     @Arg("password") password: string,
-    @Ctx() { em, req }: MyContext
+    @Ctx() { req }: MyContext
   ): Promise<UserResponse> {
-    const user = await em.findOne(User, { email: email });
-    console.log(user);
+    const user = await User.findOne({ where: { email: email } });
     if (!user) {
       return {
         errors: [
@@ -135,6 +148,7 @@ export class UserResolver {
         ],
       };
     }
+
     const valid = await argon2.verify(user.password, password);
     if (!valid) {
       return {
@@ -147,7 +161,7 @@ export class UserResolver {
       };
     }
 
-    req.session!.userId = user.id;
+    req.session.userId = user.id;
 
     return {
       successfulMessage: {
