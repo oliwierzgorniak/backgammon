@@ -1,5 +1,5 @@
-// https://raw.githubusercontent.com/benawad/tsconfig.json/master/LICENSE
 {
+  "//licenseLink": "https://raw.githubusercontent.com/benawad/tsconfig.json/master/LICENSE",
   "compilerOptions": {
     "target": "es2017",
     "module": "commonjs",
