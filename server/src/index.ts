@@ -1,19 +1,20 @@
-import "reflect-metadata";
 import express from "express";
-import "dotenv/config";
-import { setupTypeOrm } from "./setup/typeorm";
-import { setupRedis } from "./setup/redis";
-import { setupApollo } from "./setup/apollo";
+import "dotenv-safe/config";
 
-const main = async () => {
-  const app = express();
+import userRoute from "./routes/user/user";
+import setupSession from "./config/setupSession";
+import setupCors from "./config/setupCors";
 
-  setupTypeOrm();
-  setupRedis(app);
-  setupApollo(app);
+const app = express();
 
-  app.listen(process.env.PORT, () => {
-    console.log("server is listening on port", process.env.PORT);
-  });
-};
-main();
+app.set("trust proxy", 1);
+setupCors(app);
+app.use(express.json());
+setupSession(app);
+
+// routes
+app.use("/user", userRoute);
+
+app.listen(process.env.PORT, () =>
+  console.log(`🚀 server is listening on port ${process.env.PORT}`)
+);

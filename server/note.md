@@ -11,6 +11,10 @@
 - https://www.youtube.com/watch?v=gAkwW2tuIqE
 - https://dev.to/qoobes/express-session-failing-with-typescript-types-express-session-1ehk
 - https://chartio.com/resources/tutorials/how-to-define-an-auto-increment-primary-key-in-postgresql/
+- https://www.prisma.io/docs/guides/performance-and-optimization/connection-management#prismaclient-in-long-running-applications
+- https://expressjs.com/en/guide/routing.html
+- https://github.com/DefinitelyTyped/DefinitelyTyped/issues/49941
+- https://www.prisma.io/docs/concepts/components/prisma-client/handling-exceptions-and-errors
 
 ## licenses
 
