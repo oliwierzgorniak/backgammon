@@ -42,3 +42,5 @@ dist/
 src/generated/
 *.env*
 pgdata
+
+socket-test

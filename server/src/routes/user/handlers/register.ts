@@ -7,6 +7,7 @@ export default async function register(req: Request, res: Response) {
   const { username, email, password } = req.body;
 
   const hashedPassword = await argon2.hash(password);
+  console.log(hashedPassword);
   try {
     const user = await prisma.user.create({
       data: {
@@ -16,6 +17,7 @@ export default async function register(req: Request, res: Response) {
       },
     });
 
+    // @ts-ignore
     req.session.userId = user.id;
     res.json({ success: true });
   } catch (e) {

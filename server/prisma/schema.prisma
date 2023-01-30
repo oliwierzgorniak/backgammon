@@ -13,3 +13,13 @@ model User {
   username String @unique
   password String
 }
+
+model Game {
+  id    Int     @id @default(autoincrement())
+  player0 Int
+  player1 Int
+  player0score Int @default(0)
+  player1score Int @default(0)
+  winner Int?
+  startedAt DateTime @default(now())
+}

@@ -11,15 +11,21 @@ export default async function login(req: Request, res: Response) {
     },
   });
 
-  if (!user) {
-    res.json({ success: false, field: "email", message: "user not found" });
-    return;
+  if (user?.password) {
+    console.log(req.body);
+    console.log(user.password);
+    console.log(await argon2.verify(user.password, password));
   }
 
-  if (await argon2.verify(user.password, password)) {
-    req.session.userId = user.id;
-    res.end({ success: true });
-  } else {
-    res.json({ success: false, field: "password", messsage: "wrong password" });
-  }
+  // if (!user) {
+  //   res.json({ success: false, field: "email", message: "user not found" });
+  //   return;
+  // }
+
+  // if (await argon2.verify(user.password, password)) {
+  //   req.session.userId = user.id;
+  //   res.end({ success: true });
+  // } else {
+  //   res.json({ success: false, field: "password", messsage: "wrong password" });
+  // }
 }
