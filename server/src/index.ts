@@ -1,6 +1,5 @@
 import express from "express";
 import { createServer } from "http";
-import { Server } from "socket.io";
 
 import "dotenv-safe/config";
 
@@ -20,7 +19,7 @@ setupSession(app);
 app.use("/user", userRoute);
 
 const server = createServer(app);
-const io = setupAndGetIo(server);
+export const io = setupAndGetIo(server);
 ioHandler(io);
 
 server.listen(3000, () => {

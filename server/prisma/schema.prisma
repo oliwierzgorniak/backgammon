@@ -16,10 +16,10 @@ model User {
 
 model Game {
   id    Int     @id @default(autoincrement())
-  player0 Int
-  player1 Int
+  player0 String
+  player1 String
   player0score Int @default(0)
   player1score Int @default(0)
-  winner Int?
+  winner String?
   startedAt DateTime @default(now())
 }
