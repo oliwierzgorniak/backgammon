@@ -1,8 +1,6 @@
 import redis from "../../../clients/redis";
-import prisma from "../../../clients/prisma";
 import { io } from "../../../index";
 import sendToOpponent from "../../utils/sendToOpponent";
-import getCheckersPositionsJSON from "./joinPlayers/getcheckersPositionsJSON";
 
 export default async function joinPlayers(
   searchingPlayersJSON: string,
@@ -15,19 +13,13 @@ export default async function joinPlayers(
 
   await redis.set(player0 + "-opponent", player1);
   await redis.set(player1 + "-opponent", player0);
-
-  const game = await prisma.game.create({
-    data: { player0: player0, player1: player1 },
-  });
-
-  await redis.set(player0 + "-current-game", game.id);
-  await redis.set(player1 + "-current-game", game.id);
-  await redis.set(game.id + "-checkers-positions", getCheckersPositionsJSON());
-
-  console.log(player0, " vs ", player1);
-
   await redis.del("searching-players");
-
   await sendToOpponent(player1, "opponent-found");
-  await sendToOpponent(player1, "you-start");
+
+  const player1SocketId = await redis.get(player1 + "-socket-id");
+  if (!player1SocketId) {
+    console.error("player1SocketId is null");
+    return;
+  }
+  io.to(player1SocketId).emit("opponent-found");
 }

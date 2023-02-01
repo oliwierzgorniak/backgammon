@@ -1,5 +1,6 @@
 import { Socket } from "socket.io";
 import redis from "../../clients/redis";
+import initiateGame from "./findOpponent/initiateGame";
 import joinPlayers from "./findOpponent/joinPlayers";
 
 export default function findOpponent(socket: Socket) {
@@ -8,9 +9,10 @@ export default function findOpponent(socket: Socket) {
     const searchingPlayersJSON = await redis.get("searching-players");
 
     if (!searchingPlayersJSON) {
-      redis.set("searching-players", JSON.stringify([username]));
+      await redis.set("searching-players", JSON.stringify([username]));
     } else {
-      joinPlayers(searchingPlayersJSON, username);
+      await joinPlayers(searchingPlayersJSON, username);
+      await initiateGame(username);
     }
   });
 }
