@@ -2,6 +2,7 @@ import redis from "../../../clients/redis";
 import prisma from "../../../clients/prisma";
 import { io } from "../../../index";
 import sendToOpponent from "../../utils/sendToOpponent";
+import getCheckersPositionsJSON from "./joinPlayers/getcheckersPositionsJSON";
 
 export default async function joinPlayers(
   searchingPlayersJSON: string,
@@ -15,9 +16,13 @@ export default async function joinPlayers(
   await redis.set(player0 + "-opponent", player1);
   await redis.set(player1 + "-opponent", player0);
 
-  await prisma.game.create({
+  const game = await prisma.game.create({
     data: { player0: player0, player1: player1 },
   });
+
+  await redis.set(player0 + "-current-game", game.id);
+  await redis.set(player1 + "-current-game", game.id);
+  await redis.set(game.id + "-checkers-positions", getCheckersPositionsJSON());
 
   console.log(player0, " vs ", player1);
 
