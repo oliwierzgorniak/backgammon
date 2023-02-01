@@ -5,7 +5,11 @@ import joinPlayers from "./findOpponent/joinPlayers";
 
 export default function findOpponent(socket: Socket) {
   socket.on("find-opponent", async () => {
-    const username = socket.handshake.auth.username as string;
+    const username = socket.handshake.auth.username as string | undefined;
+    if (!username) {
+      console.error("!username is true");
+      return;
+    }
     const searchingPlayersJSON = await redis.get("searching-players");
 
     if (!searchingPlayersJSON) {
