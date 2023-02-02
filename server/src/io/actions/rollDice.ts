@@ -18,7 +18,7 @@ export default async function rollDices(socket: Socket) {
   }
 
   const dice = [getDiceNumber(), getDiceNumber()];
-  await redis.set(username + "-dice", dice);
+  await redis.set(username + "-dice", JSON.stringify(dice));
 
   const userSocketId = await redis.get(username + "-socket-id");
   if (!userSocketId) {

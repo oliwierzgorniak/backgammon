@@ -1,4 +1,4 @@
-export default function getCheckersPositionsJSON() {
+export default function getCheckersPositions() {
   const positions = {
     board: [
       [0, 0],
@@ -29,5 +29,5 @@ export default function getCheckersPositionsJSON() {
     bar: { "0": [], "1": [] },
   };
 
-  return JSON.stringify(positions);
+  return positions;
 }
