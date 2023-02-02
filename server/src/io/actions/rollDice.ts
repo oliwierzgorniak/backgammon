@@ -25,5 +25,7 @@ export default async function rollDices(socket: Socket) {
     console.error("userSocketId is null");
     return;
   }
+
+  await redis.set(username + "-n-of-available-moves", "2");
   io.to(userSocketId).emit("dice-rolled", dice);
 }
