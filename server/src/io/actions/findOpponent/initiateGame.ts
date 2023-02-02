@@ -19,5 +19,5 @@ export default async function initiateGame(player1: string) {
   await redis.set(game.id + "-checkers-positions", getCheckersPositionsJSON());
 
   await redis.set(player1 + "-is-roll-available", "true");
-  await sendToOpponent(player1, "you-start");
+  await sendToOpponent(player1, "your-turn");
 }
