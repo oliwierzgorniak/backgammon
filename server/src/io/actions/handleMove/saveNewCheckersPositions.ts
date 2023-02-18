@@ -1,24 +1,15 @@
 import redis from "../../../clients/redis";
+import getCheckersPositionsByUsername from "../../utils/getCheckersPositionsByUsername";
 
 export default async function saveNewCheckersPositions(
   username: string,
   move: Move
 ) {
-  const gameId = await redis.get(username + "-current-game");
-  if (gameId === null) {
-    console.error("gameId is null");
+  const checkersPositions = await getCheckersPositionsByUsername(username);
+  if (typeof checkersPositions === "undefined") {
+    console.log("checkersPositions is undefined");
     return;
   }
-
-  const checkersPositionsJSON = await redis.get(gameId + "-checkers");
-  if (checkersPositionsJSON === null) {
-    console.error("checkersPositionsJSON is null");
-    return;
-  }
-
-  const checkersPositions = JSON.parse(
-    checkersPositionsJSON
-  ) as CheckersPositions;
 
   if (move.to.area === "out") {
     checkersPositions.board[move.from.x].pop();
@@ -40,6 +31,11 @@ export default async function saveNewCheckersPositions(
       checkersPositions[move.to.area][move.to.x].push(checker);
     }
 
+    const gameId = await redis.get(username + "-current-game");
+    if (gameId === null) {
+      console.error("gameId is null");
+      return;
+    }
     await redis.set(
       gameId + "-checkers-positions",
       JSON.stringify(checkersPositions)
