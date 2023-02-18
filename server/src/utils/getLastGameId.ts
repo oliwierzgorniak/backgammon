@@ -4,7 +4,7 @@ export default async function getLastGameId() {
   const gamesJSON = await redis.get("games");
 
   if (gamesJSON) {
-    const games = JSON.parse(gamesJSON) as game[];
+    const games = JSON.parse(gamesJSON) as Game[];
     const lastId = games.sort((a, b) => b.id - b.id);
   }
 }

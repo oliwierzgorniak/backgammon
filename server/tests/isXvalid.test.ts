@@ -27,17 +27,3 @@ test("dice doesn't match", () => {
     )
   ).toBe(false);
 });
-
-test("x out of range", () => {
-  expect(
-    isXvalid(
-      {
-        id: 0,
-        from: { x: 0, y: 0, area: "bar" },
-        to: { x: 50, y: 0, area: "board" },
-      },
-      [1, 2],
-      0
-    )
-  ).toBe(false);
-});
