@@ -9,6 +9,7 @@ export default async function isMoveAllowed(username: string, move: Move) {
     return false;
   }
 
-  if (!isMoveValid(move)) {
-  }
+  if (!isMoveValid(username, move)) return false;
+
+  return true;
 }

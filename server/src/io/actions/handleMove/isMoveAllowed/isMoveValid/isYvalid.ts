@@ -20,4 +20,6 @@ export default function isYvalid(
   if (move.to.area === "bar") {
     if (checkersPositions.bar[checkerColor].length !== move.to.y) return false;
   }
+
+  return true;
 }

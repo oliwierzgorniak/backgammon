@@ -1,5 +1,7 @@
 import redis from "../../../../clients/redis";
+import doesMeetOtherRequirenments from "./isMoveValid/doesMeetOtherRequirenments";
 import isXvalid from "./isMoveValid/isXvalid";
+import isYvalid from "./isMoveValid/isYvalid";
 
 export default async function isMoveValid(username: string, move: Move) {
   const checkersPositionsJSON = await redis.get(
@@ -17,11 +19,17 @@ export default async function isMoveValid(username: string, move: Move) {
     return;
   }
 
-  const checkersPositions = JSON.parse(checkersPositionsJSON) as CheckersPositions;
+  const checkersPositions = JSON.parse(
+    checkersPositionsJSON
+  ) as CheckersPositions;
   const diceNumbers = JSON.parse(diceNumbersJSON) as number[];
 
   const checkerColor = move.id <= 14 ? 0 : 1;
 
+  if (!doesMeetOtherRequirenments(move, checkersPositions, checkerColor))
+    return false;
   if (!isXvalid(move, diceNumbers, checkerColor)) return false;
-  if (!isYvalid(move, checkersPositions, checkerColor))
+  if (!isYvalid(move, checkersPositions, checkerColor)) return false;
+
+  return true;
 }

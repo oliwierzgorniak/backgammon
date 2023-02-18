@@ -32,5 +32,12 @@ export default function isXvalid(
     if (!diceMatched) return false;
   }
 
+  // validating if checker is on ther right bar
+  if (
+    (move.from.area === "bar" || move.to.area === "bar") &&
+    move.from.x !== checkerColor
+  )
+    return false;
+
   return true;
 }
