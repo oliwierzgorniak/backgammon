@@ -18,6 +18,13 @@ export default async function rollDices(socket: Socket) {
   }
 
   const dice = [getDiceNumber(), getDiceNumber()];
+
+  const isDouble = dice[0] === dice[1];
+  if (isDouble) {
+    dice.push(dice[0]);
+    dice.push(dice[0]);
+  }
+
   await redis.set(username + "-dice", JSON.stringify(dice));
 
   const userSocketId = await redis.get(username + "-socket-id");
@@ -26,6 +33,6 @@ export default async function rollDices(socket: Socket) {
     return;
   }
 
-  await redis.set(username + "-n-of-available-moves", "2");
+  await redis.set(username + "-n-of-available-moves", isDouble ? "4" : "2");
   io.to(userSocketId).emit("dice-rolled", dice);
 }
