@@ -4,35 +4,39 @@ import redis from "../../clients/redis";
 import getDiceNumber from "./rollDice/getDiceNumber";
 
 export default async function setRollDiceListener(socket: Socket) {
-  const username = socket.handshake.auth.username as string | undefined;
+  socket.on("roll-dice", async () => {
+    const username = socket.handshake.auth.username as string | undefined;
 
-  if (!username) {
-    console.error("!username is true");
-    return;
-  }
+    if (!username) {
+      console.error("!username is true");
+      return;
+    }
 
-  const isRollAvailable = await redis.get(username + "-is-roll-available");
-  if (!isRollAvailable || !JSON.parse(isRollAvailable)) {
-    console.error("isRollAvailable is null or isRollAvailble is falsy");
-    return;
-  }
+    const isRollAvailable = await redis.get(username + "-is-roll-available");
+    if (!isRollAvailable || !JSON.parse(isRollAvailable)) {
+      console.error("isRollAvailable is null or isRollAvailble is falsy");
+      return;
+    }
 
-  const dice = [getDiceNumber(), getDiceNumber()];
+    await redis.set(username + "-is-roll-available", "false");
 
-  const isDouble = dice[0] === dice[1];
-  if (isDouble) {
-    dice.push(dice[0]);
-    dice.push(dice[0]);
-  }
+    const dice = [getDiceNumber(), getDiceNumber()];
 
-  await redis.set(username + "-dice", JSON.stringify(dice));
+    const isDouble = dice[0] === dice[1];
+    if (isDouble) {
+      dice.push(dice[0]);
+      dice.push(dice[0]);
+    }
 
-  const userSocketId = await redis.get(username + "-socket-id");
-  if (!userSocketId) {
-    console.error("userSocketId is null");
-    return;
-  }
+    await redis.set(username + "-dice", JSON.stringify(dice));
 
-  await redis.set(username + "-n-of-available-moves", isDouble ? "4" : "2");
-  io.to(userSocketId).emit("dice-rolled", dice);
+    const userSocketId = await redis.get(username + "-socket-id");
+    if (!userSocketId) {
+      console.error("userSocketId is null");
+      return;
+    }
+
+    await redis.set(username + "-n-of-available-moves", isDouble ? "4" : "2");
+    io.to(userSocketId).emit("dice-rolled", dice);
+  });
 }
