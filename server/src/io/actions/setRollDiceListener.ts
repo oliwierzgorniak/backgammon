@@ -3,7 +3,7 @@ import { io } from "../..";
 import redis from "../../clients/redis";
 import getDiceNumber from "./rollDice/getDiceNumber";
 
-export default async function rollDices(socket: Socket) {
+export default async function setRollDiceListener(socket: Socket) {
   const username = socket.handshake.auth.username as string | undefined;
 
   if (!username) {
@@ -12,7 +12,7 @@ export default async function rollDices(socket: Socket) {
   }
 
   const isRollAvailable = await redis.get(username + "-is-roll-available");
-  if (!isRollAvailable || JSON.parse(isRollAvailable)) {
+  if (!isRollAvailable || !JSON.parse(isRollAvailable)) {
     console.error("isRollAvailable is null or isRollAvailble is falsy");
     return;
   }

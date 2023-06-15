@@ -1,6 +1,8 @@
 import { Server } from "socket.io";
 import redis from "../clients/redis";
 import findOpponent from "./actions/findOpponent";
+import handleMove from "./actions/handleMove";
+import setRollDiceListener from "./actions/setRollDiceListener";
 
 export default function ioHandler(io: Server) {
   io.on("connection", async (socket) => {
@@ -15,5 +17,7 @@ export default function ioHandler(io: Server) {
     await redis.set(username + "-socket-id", socket.id);
 
     findOpponent(socket);
+    setRollDiceListener(socket);
+    handleMove(socket);
   });
 }
