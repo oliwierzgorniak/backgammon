@@ -13,9 +13,9 @@ export default function isXvalid(
   }
 
   if (move.from.area === "bar" && move.to.area === "board") {
-    const getValidationValue = (n: number) =>
-      checkerColor === 0 ? n - 1 : 23 - (n - 1);
-
+    function getValidationValue(n: number) {
+      return checkerColor === 0 ? n - 1 : 23 - (n - 1);
+    }
     const diceMatched = !!diceNumbers.find(
       (n) => getValidationValue(n) === move.to.x
     );
@@ -23,8 +23,9 @@ export default function isXvalid(
   }
 
   if (move.to.area === "out") {
-    const getValidationValue = (n: number) =>
-      checkerColor === 0 ? 23 - (n - 1) : n - 1;
+    function getValidationValue(n: number) {
+      return checkerColor === 0 ? 23 - (n - 1) : n - 1;
+    }
 
     const diceMatched = !!diceNumbers.find(
       (n) => move.to.x !== getValidationValue(n)
@@ -33,11 +34,7 @@ export default function isXvalid(
   }
 
   // validating if checker is on ther right bar
-  if (
-    (move.from.area === "bar" || move.to.area === "bar") &&
-    move.from.x !== checkerColor
-  )
-    return false;
+  if (move.to.area === "bar" && move.from.x !== checkerColor) return false;
 
   return true;
 }
